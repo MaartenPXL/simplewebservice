@@ -27,7 +27,7 @@ podTemplate(yaml: '''
       volumes:
       - name: kaniko-secret
         secret:
-            secretName: dockercred
+            secretName: dockercred2
             items:
             - key: .dockerconfigjson
               path: config.json
