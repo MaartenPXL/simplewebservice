@@ -54,8 +54,8 @@ podTemplate(yaml: '''
         stage('Build & Deploy to dockerhub') {
           env.TAG = myVersion
           sh '''
-            /kaniko/executor --context `pwd` --destination maartenpxl/simplewebservice:latest
-            echo -e deployed maartenpxl/simplewebservice:latest
+            /kaniko/executor --context `pwd` --destination maartenpxl/simplewebservice:1
+            echo -e deployed maartenpxl/simplewebservice:1
           '''
         }
       }
