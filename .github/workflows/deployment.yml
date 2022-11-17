@@ -21,6 +21,9 @@ jobs:
         
       - name: Wait for connection to establish
         run: sleep 20
+      - name: Connection test to vsphere server
+        run: ping -c 3 ${{ secrets.DEV1_IP }}
+        
 
       - uses: actions/checkout@main
       - name: zip files
