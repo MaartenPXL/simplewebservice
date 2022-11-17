@@ -34,7 +34,7 @@ jobs:
         uses: garygrossgarten/github-action-scp@release
         with:
           local: ../DECORATES_Parser.zip
-          remote: ~/DECORATES_Parser.zip
+          remote: /home/${{ secrets.DEV1_USERNAME }}/DECORATES_Parser.zip
           host: ${{ secrets.DEV1_IP }}
           username: ${{ secrets.DEV1_USERNAME }}
           password: ${{ secrets.DEV1_PASSWORD }}
