@@ -33,7 +33,7 @@ jobs:
       - name: Create artifact zip file from commit that triggered the workflow
         run: |
           cd ..
-          zip -r DECORATES_Parser.zip simplewebserver
+          zip -r DECORATES_Parser.zip simplewebservice
       - name: Copy zip file to vsphere server
         uses: garygrossgarten/github-action-scp@release
         with:
