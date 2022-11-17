@@ -1,11 +1,7 @@
 name: deployment
 
 on:
-  workflow_dispatch:
   push:
-    branches:
-      - 'development'
-      - 'MaartenPXL-patch-1'
   
 jobs:
 
@@ -48,11 +44,11 @@ jobs:
         with:
           command: |
             ls
-            rm -rf DECORATES_Parser
+            rm -rf simplewebservice
             
             unzip DECORATES_Parser.zip
             rm DECORATES_Parser.zip
-            cd DDECORATES_Parser
+            cd simplewebservice
 
             docker-compose up --build -d
           host: ${{ secrets.DEV1_IP }}
