@@ -3,4 +3,51 @@ name: deployment
 on:
   workflow_dispatch
       
+jobs:
 
+  DeployToEnvironment:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Download VPN
+        run: wget --cipher 'DEFAULT:!DH' https://login.pxl.be/public/download/linux_f5cli.x86_64.deb
+      - name: Install VPN package
+        run: sudo apt install ./linux_f5cli.x86_64.deb
+        
+      - name: Log in to PXL VPN
+        run: f5fpc --start --nocheck --nonblock  --host login.pxl.be --user ${{ secrets.VPN_MAARTEN_USERNAME }}  --password "${{ secrets.VPN_MAARTEN_PASSWORD }}"
+        
+      - name: Wait for connection to establish
+        run: sleep 20
+
+      - uses: actions/checkout@main
+      - name: zip files
+        run: |
+          cd ..
+          zip -r DECORATES_Parser.zip DECORATES_Parser
+      - name: Copy zip file to vsphere server
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          local: ../DECORATES_Parser.zip
+          remote: ~/DECORATES_Parser.zip
+          host: ${{ secrets.DEV1_IP }}
+          username: ${{ secrets.DEV1_USERNAME }}
+          password: ${{ secrets.DEV1_PASSWORD }}
+          
+      - name: Deploy on vsphere server
+        uses: fifsky/ssh-action@master
+        with:
+          command: |
+            ls
+            rm -rf DECORATES_Parser
+            
+            unzip DECORATES_Parser.zip
+            rm DECORATES_Parser.zip
+            cd DDECORATES_Parser
+
+            docker-compose up --build -d
+          host: ${{ secrets.DEV1_IP }}
+          user: ${{ secrets.DEV1_USERNAME }}
+          key: ${{ secrets.DEV1_PRIVATE_KEY }}
