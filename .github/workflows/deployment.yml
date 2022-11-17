@@ -1,4 +1,4 @@
-name: VPN
+name: deployment
 
 on:
   push:
