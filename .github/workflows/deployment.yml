@@ -30,12 +30,10 @@ jobs:
         
 
       - uses: actions/checkout@main
-      - name: Create artifact zip file
+      - name: Create artifact zip file from commit that triggered the workflow
         run: |
-          ls > ls.txt
           cd ..
-          ls
-          zip -r DECORATES_Parser.zip . -i simplewebserver
+          zip -r DECORATES_Parser.zip simplewebserver
       - name: Copy zip file to vsphere server
         uses: garygrossgarten/github-action-scp@release
         with:
