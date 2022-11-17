@@ -22,7 +22,7 @@ jobs:
         run: f5fpc --start --nocheck --nonblock  --host login.pxl.be --user ${{ secrets.VPN_MAARTEN_USERNAME }}  --password "${{ secrets.VPN_MAARTEN_PASSWORD }}"
         
       - name: Wait for connection to establish
-        run: sleep 20
+        run: sleep 10
       - name: Connection test to vsphere server
         run: ping -c 3 ${{ secrets.DEV1_IP }}
         
