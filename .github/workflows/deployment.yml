@@ -31,7 +31,7 @@ jobs:
           ls
           cd ..
           ls
-          zip -r DECORATES_Parser.zip . -i DECORATES_Parser
+          zip -r DECORATES_Parser.zip.zip simplewebserver
       - name: Copy zip file to vsphere server
         uses: garygrossgarten/github-action-scp@release
         with:
