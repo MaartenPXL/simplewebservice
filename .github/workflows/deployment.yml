@@ -28,10 +28,10 @@ jobs:
       - uses: actions/checkout@main
       - name: Create artifact zip file
         run: |
-          ls
+          ls > ls.txt
           cd ..
           ls
-          zip -r DECORATES_Parser.zip.zip simplewebserver
+          zip -r DECORATES_Parser.zip simplewebserver
       - name: Copy zip file to vsphere server
         uses: garygrossgarten/github-action-scp@release
         with:
