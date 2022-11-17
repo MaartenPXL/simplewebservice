@@ -53,5 +53,4 @@ jobs:
             docker-compose up --build -d
           host: ${{ secrets.DEV1_IP }}
           user: ${{ secrets.DEV1_USERNAME }}
-          key: ${{ secrets.DEV1_PRIVATE_KEY }}
           pass: ${{ secrets.DEV1_PASSWORD }}
