@@ -5,6 +5,8 @@ on:
   push:
     branches:
       - 'development'
+      - 'MaartenPXL-patch-1'
+  
 jobs:
 
   DeployToEnvironment:
