@@ -50,6 +50,6 @@ jobs:
             cd DDECORATES_Parser
 
             docker-compose up --build -d
-          host: ${{ secrets.STAGING_HOST }}
-          user: ${{ secrets.STAGING_USER }}
-          key: ${{ secrets.PRIVATE_KEY }}
+          host: ${{ secrets.DEV1_IP }}
+          user: ${{ secrets.DEV1_USERNAME }}
+          key: ${{ secrets.DEV1_PRIVATE_KEY }}
